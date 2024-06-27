@@ -10,7 +10,7 @@ insert into TIPO_PERSONA(IdTipoPersona, Descripcion) values
 
 GO
 insert into PERSONA(nombre,apellido,correo,clave,IdTipoPersona) values
-('Naomi','Konoe','Konoe@gmail.com','123',1),
+('elian','sencion','elian@gmail.com','123',3),
 ('Mizuki','Hayashi','Mizuki@gmail.com','456',2)
 
 

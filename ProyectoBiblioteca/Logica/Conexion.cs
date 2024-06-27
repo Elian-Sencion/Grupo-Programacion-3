@@ -7,7 +7,9 @@ namespace ProyectoBiblioteca.Logica
 {
     public class Conexion
     {
-        public static string CN = "Data Source=MSI\\MSSQLSERVER01;Initial Catalog=DB_BIBLIOTECA;Integrated Security=True";
+        public static string CN = "Data Source=DESKTOP-4JMMD2F;Initial Catalog=DB_BIBLIOTECA;User ID=sa;Password=Escuela10";
+
+
 
 
 
