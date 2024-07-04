@@ -1,0 +1,127 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Iniciar Sesión</title>
+
+    <style>
+        body {
+            background-image: linear-gradient( 0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('https://img.freepik.com/fotos-premium/biblioteca-desenfoque-abstracto-estantes-libros-borrosos-pasillo-generativo-ai_791316-5844.jpg');
+            background-size: cover;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        p {
+            height: 40px;
+            color: white;
+            text-align: center;
+        }
+
+        a {
+            color: white;
+        }
+
+
+        .card {
+            width: 100%;
+            max-width: 400px;
+            max-height: 600px;
+            background-color: #0c4f87;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-control-user {
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            padding: 10px;
+            width: 90%;
+        }
+
+        .btn-user {
+            width: 90%;
+            background: #277bc0;
+            border: none;
+            padding: 12px;
+            color: white;
+            margin: 16px 0px;
+            font-size: 16px;
+        }
+
+            .btn-user:hover {
+                background-color: #004494;
+            }
+
+        .alert {
+            background-color: #e74c3c;
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .text-center {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #ffffff;
+        }
+
+        .btn-user
+    </style>
+</head>
+<body>
+
+
+    <div class="container">
+        <div class="card">
+            <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">Login</h1>
+            </div>
+            <form class="user" action="@Url.Action("Index","Login")" method="post">
+                <div class="form-group">
+                    <input type="email" class="form-control form-control-user" name="correo" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control form-control-user" name="clave" placeholder="Password">
+                </div>
+                <div class="form-group">
+                    @{if (ViewBag.Error != null)
+                        {
+                            <div class="alert alert-danger" role="alert">
+                                @ViewBag.Error
+                            </div>
+                        }
+                    }
+                </div>
+                <p>Estoy de acuerdo con <a href="#">Terminos y conficiones</a></p>
+                <button class="btn btn-primary btn-block btn-user" type="submit">Ingresar</button>
+                <button class="btn btn-primary btn-block btn-user" type="submit">Registrar</button>
+            </form>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/bootstrap")
+</body>
+</html>
