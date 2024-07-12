@@ -27,14 +27,16 @@ jobs:
 
     - name: Install msbuild
       shell: powershell
-      run: Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
-      run: Install-Module -Name VSSetup -Force -AllowClobber
-      run: Install-VisualStudio -Channel 17.0 -Product Microsoft.VisualStudio.Product.Enterprise
+      run: |
+        Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
+        Install-Module -Name VSSetup -Force -AllowClobber
+        Install-VisualStudio -Channel 17.0 -Product Microsoft.VisualStudio.Product.Enterprise
 
     - name: Build
       run: msbuild -p:Configuration=Release
 
     - name: Test
       run: dotnet test --configuration Release --no-restore --logger "trx;LogFileName=test_results.trx"
+
 
         
