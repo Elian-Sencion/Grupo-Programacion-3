@@ -34,5 +34,5 @@ jobs:
 
     - name: Test with VSTest
       run: |
-        "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe" ProyectoBiblioteca.Tests\bin\Release\net48\ProyectoBiblioteca.Tests.dll /logger:trx
+        "C:\Program Files (x86)\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe" ProyectoBiblioteca.Tests\bin\Release\net48\ProyectoBiblioteca.Tests.dll /Logger:trx
 
