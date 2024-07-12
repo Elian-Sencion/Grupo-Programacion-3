@@ -32,4 +32,8 @@ jobs:
       - name: Build with MSBuild
         run: msbuild Proyecto.sln /p:Configuration=Release
 
+      - name: Test with VSTest
+        run: |
+          dotnet test ProyectoBiblioteca.Tests/ProyectoBiblioteca.Tests.csproj --logger trx
+        working-directory: ${{ github.workspace }}
 
