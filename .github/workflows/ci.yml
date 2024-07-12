@@ -11,7 +11,7 @@ on:
   pull_request:
     branches:
       - main
-
+        
 jobs:
   build:
     runs-on: windows-latest
@@ -24,6 +24,11 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '8.0.x'  # Asegúrate de especificar una versión compatible
+
+      - name: Install MSBuild
+        run: |
+          choco install microsoft-build-tools --package-parameters "--add Microsoft.VisualStudio.Component.ManagedDesktop.Core --version 16.11" -y
+          refreshenv
 
       - name: Restore NuGet packages
         run: dotnet restore Proyecto.sln
