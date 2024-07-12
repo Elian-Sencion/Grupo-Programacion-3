@@ -14,26 +14,25 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: windows-latest  # Usar un runner de Windows si estás construyendo proyectos de .NET Framework
 
     steps:
-    - name: Checkout code
+    - name: Checkout repository
       uses: actions/checkout@v2
 
     - name: Setup .NET
-      uses: actions/setup-dotnet@v3
+      uses: actions/setup-dotnet@v2
       with:
-        dotnet-version: '8.0.x'
+        dotnet-version: '4.8.x'  # Ajusta la versión según tus necesidades
 
-    - name: Install .NET Framework 4.8 Developer Pack
-      run: |
-        choco install netfx-4.8-devpack
+    - name: Install msbuild
       shell: powershell
-
-    - name: Restore dependencies
-      run: dotnet restore
+      run: Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
+      run: Install-Module -Name VSSetup -Force -AllowClobber
+      run: Install-VisualStudio -Channel 17.0 -Product Microsoft.VisualStudio.Product.Enterprise
 
     - name: Build
-      run: |
-        msbuild -p:Configuration=Release
+      run: msbuild -p:Configuration=Release
 
+    - name: Test
+      run: dotnet test --configuration Release --no-restore --logger "trx;LogFileName=test_results.trx"        
