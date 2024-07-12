@@ -27,10 +27,10 @@ jobs:
       uses: NuGet/setup-nuget@v1
 
     - name: Restore NuGet packages
-      run: nuget restore
+      run: nuget restore Proyecto.sln
 
     - name: Build with MSBuild
-      run: msbuild ProyectoBiblioteca.sln /p:Configuration=Release
+      run: msbuild Proyecto.sln /p:Configuration=Release
 
     - name: Test with VSTest
       run: |
