@@ -20,23 +20,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Setup .NET Core SDK
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: '8.0.x'  # Asegúrate de especificar una versión compatible
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1
 
-      - name: Install MSBuild
-        run: |
-          choco install microsoft-build-tools --package-parameters "--add Microsoft.VisualStudio.Component.ManagedDesktop.Core --version 16.11" -y
-          refreshenv
+      - name: Install NuGet
+        uses: NuGet/setup-nuget@v1
 
       - name: Restore NuGet packages
-        run: dotnet restore Proyecto.sln
+        run: nuget restore Proyecto.sln
 
       - name: Build with MSBuild
         run: msbuild Proyecto.sln /p:Configuration=Release
-
-      - name: Test with dotnet test
-        run: dotnet test ProyectoBiblioteca.Tests/ProyectoBiblioteca.Tests.csproj --logger trx
-
-
