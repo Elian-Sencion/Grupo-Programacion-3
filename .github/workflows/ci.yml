@@ -29,7 +29,7 @@ jobs:
         run: dotnet restore Proyecto.sln
 
       - name: Build with MSBuild
-        run: dotnet build Proyecto.sln --configuration Release
+        run: msbuild Proyecto.sln /p:Configuration=Release
 
       - name: Test with dotnet test
         run: dotnet test ProyectoBiblioteca.Tests/ProyectoBiblioteca.Tests.csproj --logger trx
