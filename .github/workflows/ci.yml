@@ -1,7 +1,7 @@
 # .github/workflows/ci.yml
 
 name: Integracion Continua
-  
+
 on:
   push:
     branches:
@@ -11,7 +11,7 @@ on:
   pull_request:
     branches:
       - main
-        
+
 jobs:
   build:
     runs-on: windows-latest
@@ -32,7 +32,6 @@ jobs:
       - name: Build with MSBuild
         run: msbuild Proyecto.sln /p:Configuration=Release
 
-      - name: Test with VSTest
-        shell: cmd
-        run: '"C:\Program Files (x86)\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe" "C:\Users\franc\Desktop\Grupo-Programacion-3-main\ProyectoBiblioteca.Tests\bin\Debug\net8.0\ProyectoBiblioteca.Tests.dll" /Logger:trx'
+      - name: Test with dotnet
+        run: dotnet test ProyectoBiblioteca.Tests/ProyectoBiblioteca.Tests.csproj --logger trx --results-directory TestResults
 
