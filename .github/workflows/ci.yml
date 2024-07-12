@@ -25,7 +25,7 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
-      - name: Install NuGet
+      - name: Restore NuGet packages
         run: dotnet restore
 
       - name: Build with dotnet
