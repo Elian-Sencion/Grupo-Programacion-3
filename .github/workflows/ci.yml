@@ -20,20 +20,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Setup MSBuild
-        uses: microsoft/setup-msbuild@v1
-
-      - name: Install NuGet
-        uses: NuGet/setup-nuget@v1
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '8.0.x'  # Asegúrate de especificar una versión compatible
 
       - name: Restore NuGet packages
-        run: nuget restore Proyecto.sln
+        run: dotnet restore Proyecto.sln
 
       - name: Build with MSBuild
-        run: msbuild Proyecto.sln /p:Configuration=Release
+        run: dotnet build Proyecto.sln --configuration Release
 
-      - name: Test with VSTest
-        run: |
-          dotnet test ProyectoBiblioteca.Tests/ProyectoBiblioteca.Tests.csproj --logger trx
-        working-directory: ${{ github.workspace }}
+      - name: Test with dotnet test
+        run: dotnet test ProyectoBiblioteca.Tests/ProyectoBiblioteca.Tests.csproj --logger trx
+
 
