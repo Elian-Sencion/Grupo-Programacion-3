@@ -14,24 +14,25 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest  # Usar un runner de Windows
+    runs-on: windows-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Setup MSBuild
-      uses: microsoft/setup-msbuild@v1
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1
 
-    - name: Install NuGet
-      uses: NuGet/setup-nuget@v1
+      - name: Install NuGet
+        uses: NuGet/setup-nuget@v1
 
-    - name: Restore NuGet packages
-      run: nuget restore Proyecto.sln
+      - name: Restore NuGet packages
+        run: nuget restore Proyecto.sln
 
-    - name: Build with MSBuild
-      run: msbuild Proyecto.sln /p:Configuration=Release
+      - name: Build with MSBuild
+        run: msbuild Proyecto.sln /p:Configuration=Release
 
-    - name: Test with VSTest
-      run: '"C:\Program Files (x86)\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe" "ProyectoBiblioteca.Tests\bin\Release\net48\ProyectoBiblioteca.Tests.dll" /Logger:trx'
+      - name: Test with VSTest
+        shell: cmd
+        run: '"C:\Program Files (x86)\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe" "ProyectoBiblioteca.Tests\bin\Release\net48\ProyectoBiblioteca.Tests.dll" /Logger:trx'
 
