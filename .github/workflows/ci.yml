@@ -20,18 +20,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Setup MSBuild
-        uses: microsoft/setup-msbuild@v1
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: '8.0.x'
 
       - name: Install NuGet
-        uses: NuGet/setup-nuget@v1
+        run: dotnet restore
 
-      - name: Restore NuGet packages
-        run: nuget restore Proyecto.sln
+      - name: Build with dotnet
+        run: dotnet build --configuration Release
 
-      - name: Build with MSBuild
-        run: msbuild Proyecto.sln /p:Configuration=Release
-
-      - name: Test with dotnet
-        run: dotnet test ProyectoBiblioteca.Tests/ProyectoBiblioteca.Tests.csproj --logger trx --results-directory TestResults
+      - name: Run tests with dotnet
+        run: dotnet test --logger trx --results-directory TestResults
 
