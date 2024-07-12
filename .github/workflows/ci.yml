@@ -20,23 +20,19 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v2
-      with:
-        dotnet-version: '4.8.x'  # Ajusta la versión según tus necesidades
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1
 
-    - name: Install msbuild
-      shell: powershell
+    - name: Install NuGet
+      uses: NuGet/setup-nuget@v1
+
+    - name: Restore NuGet packages
+      run: nuget restore
+
+    - name: Build with MSBuild
+      run: msbuild ProyectoBiblioteca/ProyectoBiblioteca.sln /p:Configuration=Release
+
+    - name: Test with VSTest
       run: |
-        Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
-        Install-Module -Name VSSetup -Force -AllowClobber
-        Install-VisualStudio -Channel 17.0 -Product Microsoft.VisualStudio.Product.Enterprise
-
-    - name: Build
-      run: msbuild -p:Configuration=Release
-
-    - name: Test
-      run: dotnet test --configuration Release --no-restore --logger "trx;LogFileName=test_results.trx"
-
-
-        
+        "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe" ProyectoBiblioteca.Tests\bin\Release\net48\ProyectoBiblioteca.Tests.dll /logger:trx
+    
