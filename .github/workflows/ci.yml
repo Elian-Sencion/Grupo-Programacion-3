@@ -15,28 +15,28 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+    - uses: actions/checkout@v2
 
-      - name: Setup .NET Framework SDK
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: '4.8'
+    - name: Setup .NET Core SDK
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '8.0.x'
 
-      - name: Restore NuGet packages
-        run: dotnet restore
+    - name: Restore dependencies
+      run: dotnet restore
 
-      - name: Build solution
-        run: dotnet build --configuration Release
+    - name: Build and test
+      run: |
+        dotnet build --configuration Release --no-restore
+        dotnet test --no-build --configuration Release --logger "trx;LogFileName=test_results.trx"
 
-      - name: Run unit tests
-        run: dotnet test --configuration Release --logger trx --results-directory ./TestResults
-        continue-on-error: true
+    - name: Upload test results
+      if: always()
+      uses: actions/upload-artifact@v2
+      with:
+        name: Test Results
+        path: '**/test_results.trx'
 
-      - name: Publish test results
-        uses: actions/upload-artifact@v2
-        with:
-          name: TestResults
-          path: ./TestResults
 
