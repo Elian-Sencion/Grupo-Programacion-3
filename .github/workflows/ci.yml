@@ -30,7 +30,7 @@ jobs:
       run: nuget restore
 
     - name: Build with MSBuild
-      run: msbuild ProyectoBiblioteca/ProyectoBiblioteca.sln /p:Configuration=Release
+      run: msbuild ProyectoBiblioteca.sln /p:Configuration=Release
 
     - name: Test with VSTest
       run: |
