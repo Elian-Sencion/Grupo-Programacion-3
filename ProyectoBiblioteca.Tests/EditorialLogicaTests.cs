@@ -102,7 +102,7 @@ namespace ProyectoBiblioteca.Tests
         {
             // Arrange
             EditorialLogica logica = EditorialLogica.Instancia;
-            int idEditorialInexistente = 13;
+            int idEditorialInexistente = 1;
 
             // Act
             bool eliminacionExitosa = logica.Eliminar(idEditorialInexistente);

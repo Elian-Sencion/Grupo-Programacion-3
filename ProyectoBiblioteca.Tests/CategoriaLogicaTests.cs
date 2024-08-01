@@ -101,7 +101,7 @@ namespace ProyectoBiblioteca.Tests
         {
             // Arrange
             CategoriaLogica logica = CategoriaLogica.Instancia;
-            Categoria categoriaInexistente = new Categoria { IdCategoria = 1, Descripcion = "Categoría Inexistente", Estado = true };
+            Categoria categoriaInexistente = new Categoria { IdCategoria = 25, Descripcion = "Categoría Inexistente", Estado = true };
 
             // Act
             bool modificacionExitosa = logica.Modificar(categoriaInexistente);

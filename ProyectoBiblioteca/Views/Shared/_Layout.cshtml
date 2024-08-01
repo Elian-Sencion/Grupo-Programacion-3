@@ -6,16 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Sistema Bibliotecario</title>
+    <title>Sistema Bibliotecario: Library Book's</title>
     @Styles.Render("~/Content/css")
     <style>
         .dt-bootstrap4 {
             font-size: 14px !important;
         }
+        body {
+            background: linear-gradient(to bottom, #ffffff, #cccccc); /* Fondo degradado de blanco a gris */
+        }
+        .bg-primary {
+            background-color: #8B4513 !important; /* Marrón */
+        }
+
+        .sidebar .nav-item .nav-link {
+            color: #FFD700 !important; /* Amarillo */
+        }
+
+            .sidebar .nav-item .nav-link:hover {
+                color: #FFF8DC !important; /* Amarillo claro */
+            }
+
+        .bg-white {
+            background-color: #FFF8DC !important; /* Amarillo claro */
+        }
     </style>
 </head>
 <body>
-    @{ 
+    @{
         ProyectoBiblioteca.Models.Persona objeto = ((ProyectoBiblioteca.Models.Persona)Session["Usuario"]);
     }
     <!-- Page Wrapper -->
@@ -25,9 +43,9 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="@Url.Action("Index", "Admin")">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-book-reader"></i>
+                    <i class="fas fa-book"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">Mi Biblioteca</div>
+                <div class="sidebar-brand-text mx-3">Library Book's</div>
             </a>
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
@@ -53,7 +71,7 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="@Url.Action("Registrar", "Prestamo")">Regitrar</a>
+                        <a class="collapse-item" href="@Url.Action("Registrar", "Prestamo")">Registrar</a>
                         <a class="collapse-item" href="@Url.Action("Consultar", "Prestamo")">Consultar</a>
                     </div>
                 </div>
@@ -80,7 +98,6 @@
                     </li>
                 }
             }
-
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
                    aria-controls="collapsePages">
@@ -100,13 +117,7 @@
                     </div>
                 </div>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley" target="_blank">
-                    <i class="fas fa-donate"></i>
-                    <span>Click aqui!!</span>
-                </a>
-            </li>
-
+           
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
             <!-- Sidebar Toggler (Sidebar) -->
@@ -125,8 +136,6 @@
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button>
-                    <!-- Topbar Search -->
-  
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
@@ -165,7 +174,7 @@
                                  aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="@Url.Action("CerrarSesion","Admin")">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Salir
+                                    Cerrar Sesion
                                 </a>
                             </div>
                         </li>
@@ -183,7 +192,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                        <span>Copyright &copy; Your Website 2024</span>
                     </div>
                 </div>
             </footer>
@@ -196,7 +205,6 @@
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
-
 
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
